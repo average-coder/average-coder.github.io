@@ -24,22 +24,7 @@ export const requestPost = (req, captcha, responseG) => (dispatch, getState) =>{
 
       return
     }
-    // if(captcha === false || captcha === null){
-
-    //   const error ={
-    //     msg: "PLEASE COMPLETE THE CAPTCHA",
-    //     status: 10401
-    //   };
-    
-    // dispatch({
-    //     type: GET_ERRORS,
-    //     payload: error
-    // });
-
-    //   return
-    // }
-
-
+  
     const body = { data:req, responseG:responseG }
 
     axios.post('/post-request/', body, config)

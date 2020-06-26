@@ -20,6 +20,7 @@ export class Alerts extends Component {
         if (error.msg.title) alert.error("TITLE: "+error.msg.title.join());
         if (error.msg.name) alert.error("NAME: "+error.msg.name.join());
         if (error.msg.data) alert.error("DATA: "+error.msg.data.join());
+        if (error.msg.captcha) alert.error("PLEASE COMPLETE THE CAPTCHA");
         if (error.msg.mismatch) alert.error(error.msg.mismatch);
         if (error.msg && error.status === 10401) alert.error(error.msg);
         }
