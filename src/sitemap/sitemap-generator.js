@@ -9,7 +9,7 @@ require("babel-register")({
 const axios = require("axios");
 
 async function generateSitemap() {
-    const res = await axios.get('/list/');
+    const res = await axios.get('https://average-coder-backend.herokuapp.com/list/');
     const data = res.data;  
       let idMap = [];
       for(var i = 0; i < data.length; i++) {
