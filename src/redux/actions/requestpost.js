@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GET_MESSAGES, GET_ERRORS } from '../actions/types';
 
 
-export const requestPost = (req) => (dispatch, getState) =>{
+export const requestPost = (req, captcha, responseG) => (dispatch, getState) =>{
 
     const config = {
         headers: {
@@ -24,8 +24,23 @@ export const requestPost = (req) => (dispatch, getState) =>{
 
       return
     }
+    if(captcha === false || captcha === null){
 
-    const body = { data:req }
+      const error ={
+        msg: "PLEASE COMPLETE THE CAPTCHA",
+        status: 10401
+      };
+    
+    dispatch({
+        type: GET_ERRORS,
+        payload: error
+    });
+
+      return
+    }
+
+
+    const body = { data:req, responseG:responseG }
 
     axios.post('/post-request/', body, config)
         .then((res) => {

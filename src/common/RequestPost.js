@@ -8,17 +8,25 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 
 const RequestPost = props => {
 
     const [req, setReq] = useState('');
+    const [captcha, setCaptcha] = useState(false);
+    const [responseG, setResponseG] = useState(null);
 
     useEffect(()=>{
       return () =>{
         setReq('');
       }
     }, [])
+    
+    const handleCaptcha = (key) => {
+      setCaptcha(true);
+      setResponseG(key);
+    }
 
     return (
         <Container>
@@ -48,11 +56,18 @@ const RequestPost = props => {
         />
         </Grid>
         <Grid item>
+        <ReCAPTCHA 
+          onChange={handleCaptcha}
+          sitekey="6LdnoakZAAAAAOGTWArg4w2etfWRqqBLTvrIhJOI"
+          theme="dark"
+        />
+        </Grid>
+        <Grid item>
         <Button
         variant="contained"
         color="primary"
         endIcon={<Icon>send</Icon>}
-        onClick={()=>{props.requestPost(req)}}
+        onClick={()=>{props.requestPost(req, captcha, responseG)}}
         >
         Send
       </Button>
