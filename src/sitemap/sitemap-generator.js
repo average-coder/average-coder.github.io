@@ -8,18 +8,12 @@ require("babel-register")({
 
 const axios = require("axios");
 
-let posts = [];
-
-axios.get('/list/')
-    .then((res)=>{
-        posts = res.data
-    })
-    .catch((err)=>{console.log(err)})
-
-  function generateSitemap() {
+async function generateSitemap() {
+    const res = await axios.get('/list/');
+    const data = await res.json();  
       let idMap = [];
-      for(var i = 0; i < posts.length; i++) {
-        idMap.push({ slug: posts[i].slug });
+      for(var i = 0; i < data.length; i++) {
+        idMap.push({ slug: data[i].slug });
       }
       const paramsConfig = {
         "/post/:slug": idMap
