@@ -38,10 +38,10 @@ export const requestPost = (req, captcha, responseG) => (dispatch, getState) =>{
         })
         .catch((err) => {
 
-            const error ={
-                msg: "SORRY, AN ERROR OCCURED. PLEASE TRY AGAIN LATER",
-                status: 10401
-              };
+          const error ={
+            msg: err.response.data,
+            status: err.response.status
+          };
             
             dispatch({
                 type: GET_ERRORS,
