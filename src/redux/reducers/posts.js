@@ -38,7 +38,7 @@ export default function (state = initialState, action){
         case ADD_SUBCOMMENT:
             return{
                 ...state,
-                comments: (state.comments).map((item)=>{if(item.id === action.payload.id){return({...item, sub_comments: [...item.sub_comments, action.payload.data]})}else{return(item)}})
+                comments: (state.comments).map((item)=>{if(item.id === action.payload.id){if(item.sub_comments){return({...item, sub_comments: [...item.sub_comments, action.payload.data]})}else{return({...item, sub_comments: [action.payload.data]})}}else{return(item)}})
             }
             
         default:

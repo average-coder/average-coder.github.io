@@ -59,7 +59,7 @@ export const addSubComment = (name, comment, parent_comment) => (dispatch, getSt
             dispatch({
                 type: GET_MESSAGES,
                 payload: "COMMENT ADDED"
-            })
+              });
         })
         .catch((err)=>{
             const error ={

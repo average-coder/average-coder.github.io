@@ -30,7 +30,7 @@ const PhotoUploader = props => {
 
     const res_arr = (props.images).map((item)=>{
       return(
-        <Grid item>
+        <Grid item key={item.id}>
           <Card className={classes.root} variant="outlined">
       <CardActionArea  onClick={() =>  {navigator.clipboard.writeText(item.image); props.pushMessage("LINK COPIED");}}>
         <CardMedia

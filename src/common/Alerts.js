@@ -15,7 +15,7 @@ export class Alerts extends Component {
         if(error !== prevProps.error){
         if (error.msg.non_field_errors) alert.error(error.msg.non_field_errors.join());
         if (error.msg.username) alert.error("USERNAME: "+error.msg.username.join());
-        if (error.msg.password) alert.error("PASSWORD: "+error.msg.username.join());
+        if (error.msg.password) alert.error("PASSWORD: "+error.msg.password.join());
         if (error.msg.email) alert.error("EMAIL: "+error.msg.email.join());
         if (error.msg.title) alert.error("TITLE: "+error.msg.title.join());
         if (error.msg.name) alert.error("NAME: "+error.msg.name.join());

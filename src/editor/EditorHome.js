@@ -56,7 +56,7 @@ const EditorHome = (props) => {
 
     const res_arr = (props.posts).map((item)=>{
         return(
-          <Grid item>
+          <Grid item key={item.id}>
              <Card className={classes.root}>
                  <CardActionArea component={Link} to={"/post/"+item.slug}>
         <CardContent>
