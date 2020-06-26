@@ -10,7 +10,7 @@ const axios = require("axios");
 
 async function generateSitemap() {
     const res = await axios.get('/list/');
-    const data = await res.json();  
+    const data = res.data;  
       let idMap = [];
       for(var i = 0; i < data.length; i++) {
         idMap.push({ slug: data[i].slug });
