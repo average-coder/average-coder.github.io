@@ -49,7 +49,7 @@ const Search = props => {
     const [search, setSearch] = useState(props.match.params.title);
 
     useEffect(()=>{
-      props.getSearch(props.match.params.title)
+      props.getSearch(props.match.params.title);
     },[props.match.params.title])
 
     const submit = (e) =>{

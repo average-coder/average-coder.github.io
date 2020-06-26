@@ -50,7 +50,7 @@ const EditorHome = (props) => {
     useEffect(() => {
         props.getEditorPosts();
         return () => {
-            
+            setVisible(false);
         }
     }, [])
 

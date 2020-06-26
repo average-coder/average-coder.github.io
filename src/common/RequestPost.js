@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { requestPost } from '../redux/actions/requestpost';
@@ -13,6 +13,12 @@ import Typography from '@material-ui/core/Typography';
 const RequestPost = props => {
 
     const [req, setReq] = useState('');
+
+    useEffect(()=>{
+      return () =>{
+        setReq('');
+      }
+    }, [])
 
     return (
         <Container>

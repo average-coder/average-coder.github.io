@@ -3,19 +3,13 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../redux/actions/auth';
 import { Redirect } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
- 
-}))
-
 const Login = (props) => {
-    const classes = useStyles();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     if(props.auth.isAuthenticated)

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,6 +41,21 @@ export const CommentSection = (props) => {
     const [visible, setVisible] = useState(false);
     const [type, setType] = useState(null);
     const classes = useStyles();
+
+    useEffect(() => {
+        
+        return () => {
+            clearState();
+            setExpanded(false);
+            setVisible(false);
+            setType(null);
+        }
+    }, [])
+
+    const clearState = () =>{
+        setName('');
+        setComment('');
+    }
 
     const handleChange = (id) =>{
         if(expanded === false){
@@ -97,6 +112,7 @@ export const CommentSection = (props) => {
             onClick={()=>{
                 type === "cmt" ? props.addComment(name, comment, props.id) : props.addSubComment(name, comment, type)
                 setVisible(false);
+                clearState();
             }}
             >
                 Post
