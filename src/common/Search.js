@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import {convert} from './Time';
+import Box from '@material-ui/core/Box';
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles({
   root: {
@@ -78,7 +80,14 @@ const Search = props => {
 
     return (
         <Container>
-        
+         <Box>
+            <Helmet>
+                <title>SEARCH - {props.match.params.title}</title>
+                <meta name="description" content={props.match.params.title} />
+                <meta name="author" content="average coder" />
+                <meta name="keywords" content={props.match.params.title} /> 
+            </Helmet>
+            </Box>
         <Grid
           container
           direction="column"

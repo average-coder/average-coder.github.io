@@ -35,7 +35,7 @@ const Navbar = (props) => {
             <HomeIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            XYZ BLOG
+            AvgCdr
           </Typography>
           {
             props.auth.isAuthenticated ?

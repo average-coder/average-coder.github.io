@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import CommentSection from './CommentSection';
 import {convert} from './Time';
+import Box from '@material-ui/core/Box';
+import {Helmet} from "react-helmet";
 
 var Markdown = require('react-markdown-it')
 
@@ -21,6 +23,14 @@ const Post = props => {
 
     return (
         <Container>
+            <Box>
+            <Helmet>
+                <title>{props.posts.title}</title>
+                <meta name="description" content={props.posts.title} />
+                <meta name="author" content={props.posts.username} />
+                <meta name="keywords" content={props.posts.slug} /> 
+            </Helmet>
+            </Box>
             <Grid
             container
             direction="column"

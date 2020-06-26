@@ -15,6 +15,9 @@ import { getSuggestions } from '../redux/actions/suggestions';
 import {Link} from 'react-router-dom';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import {convert} from './Time';
+import Box from '@material-ui/core/Box';
+import {Helmet} from "react-helmet";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +63,14 @@ const Home = (props) => {
 
     return (
         <Container>
+            <Box>
+            <Helmet>
+                <title>Average Coder</title>
+                <meta name="description" content="A programming tutorial website." />
+                <meta name="author" content="average coder" />
+                <meta name="keywords" content="Programming, Tutorial, Django, React, JS, HTML, CSS" /> 
+            </Helmet>
+            </Box>
           <form onSubmit={submit}>
           <Grid
             container

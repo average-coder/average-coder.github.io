@@ -9,7 +9,8 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 import ReCAPTCHA from 'react-google-recaptcha';
-
+import Box from '@material-ui/core/Box';
+import {Helmet} from "react-helmet";
 
 const RequestPost = props => {
 
@@ -30,6 +31,14 @@ const RequestPost = props => {
 
     return (
         <Container>
+          <Box>
+            <Helmet>
+                <title>Request Post</title>
+                <meta name="description" content="Request a topic to be covered." />
+                <meta name="author" content="average coder" />
+                <meta name="keywords" content="Request, Post" /> 
+            </Helmet>
+            </Box>
         <Grid
           container
           direction="column"
