@@ -17,6 +17,7 @@ const RequestPost = props => {
     const [req, setReq] = useState('');
     const [captcha, setCaptcha] = useState(false);
     const [responseG, setResponseG] = useState(null);
+    const recaptchaRef = React.createRef();
 
     useEffect(()=>{
       return () =>{
@@ -69,6 +70,7 @@ const RequestPost = props => {
           onChange={handleCaptcha}
           sitekey="6LdnoakZAAAAAOGTWArg4w2etfWRqqBLTvrIhJOI"
           theme="dark"
+          ref={recaptchaRef}
         />
         </Grid>
         <Grid item>
@@ -76,7 +78,7 @@ const RequestPost = props => {
         variant="contained"
         color="primary"
         endIcon={<Icon>send</Icon>}
-        onClick={()=>{props.requestPost(req, captcha, responseG)}}
+        onClick={()=>{props.requestPost(req, captcha, responseG); recaptchaRef.current.reset();}}
         >
         Send
       </Button>

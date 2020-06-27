@@ -38,6 +38,7 @@ const Login = (props) => {
             <Grid item>
                 <TextField
                 variant="outlined"
+                type="password"
                 label="Password"
                  onChange={(text)=>{setPassword(text.target.value)}}
                 />
