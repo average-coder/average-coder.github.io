@@ -16,7 +16,7 @@ import EditorHome from './editor/EditorHome';
 import EditorMD from './editor/EditorMD';
 import Alerts from './common/Alerts';
 import { Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+import AlertTemplate from './common/AlertTemplate';
 import Post from './common/Post';
 import Search from './common/Search';
 import RequestPost from './common/RequestPost';
