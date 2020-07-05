@@ -2,11 +2,11 @@ import { GET_ERRORS, GET_MESSAGES } from './types';
 
 
 export const pushError = (msg) => (dispatch, getState) => {
-    const error ={
+    const error = {
         msg: msg,
         status: 10401
-      };
-    
+    };
+
     dispatch({
         type: GET_ERRORS,
         payload: error

@@ -16,22 +16,22 @@ import Modal from '@material-ui/core/Modal';
 import { addComment, addSubComment } from '../redux/actions/comments';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {convert} from './Time';
+import { convert } from './Time';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        
-      },
+
+    },
 
     paper: {
         minWidth: '50vw',
         minHeight: '50vh',
-        
+
     }
-  }));
+}));
 
 export const CommentSection = (props) => {
 
@@ -43,7 +43,7 @@ export const CommentSection = (props) => {
     const classes = useStyles();
 
     useEffect(() => {
-        
+
         return () => {
             clearState();
             setExpanded(false);
@@ -52,21 +52,19 @@ export const CommentSection = (props) => {
         }
     }, [])
 
-    const clearState = () =>{
+    const clearState = () => {
         setName('');
         setComment('');
     }
 
-    const handleChange = (id) =>{
-        if(expanded === false){
+    const handleChange = (id) => {
+        if (expanded === false) {
             setExpanded(id);
         }
-        else if(expanded === id)
-        {
+        else if (expanded === id) {
             setExpanded(false);
         }
-        else if(expanded !== id && expanded !== false)
-        {
+        else if (expanded !== id && expanded !== false) {
             setExpanded(false);
             setExpanded(id);
         }
@@ -75,61 +73,61 @@ export const CommentSection = (props) => {
     return (
         <Fragment>
             <Box>
-                <Modal 
-                open={visible} 
-                className={classes.modal}
-                onBackdropClick={()=>{setVisible(false)}}
+                <Modal
+                    open={visible}
+                    className={classes.modal}
+                    onBackdropClick={() => { setVisible(false) }}
                 >
                     <Paper className={classes.paper}>
-                <Grid
-                container
-                direction="column"
-                justify="center"
-                style={{ padding: 10 }}
-                >
-            <Grid item style={{ padding: 10 }}>
-                <TextField
-                variant="outlined"
-                label="Name"
-                fullWidth
-                 onChange={(text)=>{setName(text.target.value)}}
-                />
-            </Grid>
-            <Grid item style={{ padding: 10 }}>
-                <TextField
-                variant="outlined"
-                label="Comment"
-                multiline
-                fullWidth
-                rows={10}
-                 onChange={(text)=>{setComment(text.target.value)}}
-                />
-            </Grid>
-            <Grid item style={{ padding: 10 }}>
-            <Button
-            variant="contained"
-            color="primary"
-            onClick={()=>{
-                type === "cmt" ? props.addComment(name, comment, props.id) : props.addSubComment(name, comment, type)
-                setVisible(false);
-                clearState();
-            }}
-            >
-                Post
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            style={{ padding: 10 }}
+                        >
+                            <Grid item style={{ padding: 10 }}>
+                                <TextField
+                                    variant="outlined"
+                                    label="Name"
+                                    fullWidth
+                                    onChange={(text) => { setName(text.target.value) }}
+                                />
+                            </Grid>
+                            <Grid item style={{ padding: 10 }}>
+                                <TextField
+                                    variant="outlined"
+                                    label="Comment"
+                                    multiline
+                                    fullWidth
+                                    rows={10}
+                                    onChange={(text) => { setComment(text.target.value) }}
+                                />
+                            </Grid>
+                            <Grid item style={{ padding: 10 }}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => {
+                                        type === "cmt" ? props.addComment(name, comment, props.id) : props.addSubComment(name, comment, type)
+                                        setVisible(false);
+                                        clearState();
+                                    }}
+                                >
+                                    Post
             </Button>
-                    </Grid>
+                            </Grid>
 
-                </Grid>
-                </Paper>
+                        </Grid>
+                    </Paper>
                 </Modal>
             </Box>
             <Box>
-                <Grid 
-                container
-                style={{paddingLeft: 10, paddingRight: 10}}
-                alignItems="center"
-                direction="row"
-                justify="space-between"
+                <Grid
+                    container
+                    style={{ paddingLeft: 10, paddingRight: 10 }}
+                    alignItems="center"
+                    direction="row"
+                    justify="space-between"
                 >
                     <Grid item >
                         <Typography variant="h6" component="h6">
@@ -137,111 +135,111 @@ export const CommentSection = (props) => {
                         </Typography>
                     </Grid>
                     <Grid item >
-                        <IconButton onClick={() => {setVisible(true); setType("cmt");}}>
-                            <AddBoxIcon/>
+                        <IconButton onClick={() => { setVisible(true); setType("cmt"); }}>
+                            <AddBoxIcon />
                         </IconButton>
                     </Grid>
                 </Grid>
             </Box>
             <Box>
-                    <Grid 
+                <Grid
                     container
                     spacing={2}
                     direction="column"
                     justify="center"
-                    >
-                        {props.comments?
-                            (props.comments).map((item)=>(
-                        <Grid item key={item.id}>
-                            <Paper elevation={2}>
-                            <Grid 
-                            container
-                            style={{paddingLeft: 10, paddingRight: 10}}
-                            alignItems="center"
-                            direction="row"
-                            justify="space-between"
-                            >
-                            <Grid item>
-                                <Typography variant="subtitle2">
-                                    {item.data}
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <IconButton onClick={()=>{handleChange(item.id)}}>
-                            { expanded === item.id? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/> }
-                                </IconButton>
-                                <IconButton onClick={() => {setVisible(true); setType(item.id);}}>
-                                    <ReplyIcon/>
-                                </IconButton>
-                            </Grid>
-                            </Grid>
-                            <Grid 
-                            container
-                            style={{paddingLeft: 10, paddingRight: 10, paddingBottom: 2}}
-                            alignItems="center"
-                            direction="row"
-                            justify="space-between"
-                            key={"info"+item.id}
-                            >
-                                <Grid item key={"name"+item.id}>
-                                <Typography variant="caption">
-                                    @{item.name}
-                                </Typography>
-                            </Grid>
-                            <Grid item key={"date"+item.id}>
-                            <Typography variant="caption" >
-                                    {convert(item.date_posted)}
-                                </Typography>
-                            </Grid>
-                            </Grid>
-                                {item.sub_comments && expanded === item.id?
-                                <Grid 
-                                container
-                                spacing={2}
-                                direction="column"
-                                justify="center"
-                                style={{paddingTop: 10, paddingLeft: 15, paddingRight: 15}}
-                                key={"sub"+item.id}
-                                >
-                                {
-                                (item.sub_comments).map((cmnt)=>(
-                                    <Fragment key={cmnt.id}>
-                                    <Grid item key={"d"+cmnt.id}>
-                                        <Divider light />
+                >
+                    {props.comments ?
+                        (props.comments).map((item) => (
+                            <Grid item key={item.id}>
+                                <Paper elevation={2}>
+                                    <Grid
+                                        container
+                                        style={{ paddingLeft: 10, paddingRight: 10 }}
+                                        alignItems="center"
+                                        direction="row"
+                                        justify="space-between"
+                                    >
+                                        <Grid item>
+                                            <Typography variant="subtitle2">
+                                                {item.data}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <IconButton onClick={() => { handleChange(item.id) }}>
+                                                {expanded === item.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                            </IconButton>
+                                            <IconButton onClick={() => { setVisible(true); setType(item.id); }}>
+                                                <ReplyIcon />
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item key={"data"+cmnt.id}>
-                                <Typography variant="body2">{cmnt.data}</Typography>
-                                <Grid 
-                            container
-                            style={{padding: 10}}
-                            alignItems="center"
-                            direction="row"
-                            justify="space-between"
-                            key={"info"+cmnt.id}
-                            >
-                                <Grid item key={"name"+cmnt.id}>
-                                <Typography variant="caption">
-                                    @{cmnt.name}
-                                </Typography>
-                            </Grid>
-                            <Grid item key={"date"+cmnt.id}>
-                            <Typography variant="caption">
-                                    {convert(cmnt.date_posted)}
-                                </Typography>
-                            </Grid>
-                            </Grid>
+                                    <Grid
+                                        container
+                                        style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 2 }}
+                                        alignItems="center"
+                                        direction="row"
+                                        justify="space-between"
+                                        key={"info" + item.id}
+                                    >
+                                        <Grid item key={"name" + item.id}>
+                                            <Typography variant="caption">
+                                                @{item.name}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item key={"date" + item.id}>
+                                            <Typography variant="caption" >
+                                                {convert(item.date_posted)}
+                                            </Typography>
+                                        </Grid>
                                     </Grid>
-                                    </Fragment>
-                                ))}
-                                </Grid>
-                                :null    
-                            }
-                            
-                            </Paper>
-                        </Grid>
-                            )) : null
-                        }
-                    </Grid>
+                                    {item.sub_comments && expanded === item.id ?
+                                        <Grid
+                                            container
+                                            spacing={2}
+                                            direction="column"
+                                            justify="center"
+                                            style={{ paddingTop: 10, paddingLeft: 15, paddingRight: 15 }}
+                                            key={"sub" + item.id}
+                                        >
+                                            {
+                                                (item.sub_comments).map((cmnt) => (
+                                                    <Fragment key={cmnt.id}>
+                                                        <Grid item key={"d" + cmnt.id}>
+                                                            <Divider light />
+                                                        </Grid>
+                                                        <Grid item key={"data" + cmnt.id}>
+                                                            <Typography variant="body2">{cmnt.data}</Typography>
+                                                            <Grid
+                                                                container
+                                                                style={{ padding: 10 }}
+                                                                alignItems="center"
+                                                                direction="row"
+                                                                justify="space-between"
+                                                                key={"info" + cmnt.id}
+                                                            >
+                                                                <Grid item key={"name" + cmnt.id}>
+                                                                    <Typography variant="caption">
+                                                                        @{cmnt.name}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid item key={"date" + cmnt.id}>
+                                                                    <Typography variant="caption">
+                                                                        {convert(cmnt.date_posted)}
+                                                                    </Typography>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </Fragment>
+                                                ))}
+                                        </Grid>
+                                        : null
+                                    }
+
+                                </Paper>
+                            </Grid>
+                        )) : null
+                    }
+                </Grid>
             </Box>
         </Fragment>
     )

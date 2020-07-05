@@ -7,10 +7,10 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
     switch (type) {
 
-    case GET_SUGGESTIONS:
-        return { ...state, suggestions: payload }
+        case GET_SUGGESTIONS:
+            return { ...state, suggestions: payload }
 
-    default:
-        return state
+        default:
+            return state
     }
 }

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
@@ -10,7 +10,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './common/theme';
 import Navbar from './common/Navbar';
-import axios from 'axios'; 
+import axios from 'axios';
 import PrivateRoute from './authentication/PrivateRoute';
 import EditorHome from './editor/EditorHome';
 import EditorMD from './editor/EditorMD';
@@ -31,30 +31,30 @@ function App() {
 
   axios.defaults.baseURL = 'https://average-coder-backend.herokuapp.com/';
 
-  useEffect(()=>{store.dispatch(loadUser())}, []);
+  useEffect(() => { store.dispatch(loadUser()) }, []);
 
   return (
     <Provider store={store}>
-    <ThemeProvider theme={theme}>
-    <AlertProvider template={AlertTemplate} {...alertOptions}>
-    <CssBaseline />
-    <Fragment>
-    <Router>
-    <Navbar/>
-    <Alerts/>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/post/:slug" component={Post}/>
-        <Route exact path="/search/:title" component={Search}/>
-        <Route exact path="/request-post" component={RequestPost}/>
-        <PrivateRoute exact path="/ehome" component={EditorHome}/>
-        <PrivateRoute exact path="/editor" component={EditorMD}/>
-      </Switch>
-    </Router>
-    </Fragment>
-    </AlertProvider>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <CssBaseline />
+          <Fragment>
+            <Router>
+              <Navbar />
+              <Alerts />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/post/:slug" component={Post} />
+                <Route exact path="/search/:title" component={Search} />
+                <Route exact path="/request-post" component={RequestPost} />
+                <PrivateRoute exact path="/ehome" component={EditorHome} />
+                <PrivateRoute exact path="/editor" component={EditorMD} />
+              </Switch>
+            </Router>
+          </Fragment>
+        </AlertProvider>
+      </ThemeProvider>
     </Provider>
   );
 }

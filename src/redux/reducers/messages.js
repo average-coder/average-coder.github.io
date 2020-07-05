@@ -1,14 +1,13 @@
 import { GET_MESSAGES } from '../actions/types';
 
-const initialState ={
+const initialState = {
     msg: {}
 }
 
-export default function (state = initialState, action){
-    switch(action.type)
-    {
+export default function (state = initialState, action) {
+    switch (action.type) {
         case GET_MESSAGES:
-            return{
+            return {
                 msg: action.payload
             };
 

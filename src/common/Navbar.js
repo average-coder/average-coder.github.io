@@ -31,7 +31,7 @@ const Navbar = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Home"  component={Link} to="/">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Home" component={Link} to="/">
             <HomeIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
@@ -39,15 +39,15 @@ const Navbar = (props) => {
           </Typography>
           {
             props.auth.isAuthenticated ?
-            <>
-            <Button component={Link} to="/ehome" color="inherit">Dash</Button>
-            <Button component={Link} to="/editor" color="inherit">Editor</Button>
-            <Button color="inherit" onClick = {()=>props.logout()}>Logout</Button> 
-            </>
-            :
-            <>
-            <Button component={Link} to="/request-post" color="inherit">Request New Post</Button>
-            </>
+              <>
+                <Button component={Link} to="/ehome" color="inherit">Dash</Button>
+                <Button component={Link} to="/editor" color="inherit">Editor</Button>
+                <Button color="inherit" onClick={() => props.logout()}>Logout</Button>
+              </>
+              :
+              <>
+                <Button component={Link} to="/request-post" color="inherit">Request New Post</Button>
+              </>
           }
         </Toolbar>
       </AppBar>
@@ -56,7 +56,7 @@ const Navbar = (props) => {
 }
 
 Navbar.propTypes = {
-  auth: PropTypes.object.isRequired, 
+  auth: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
 }
 
@@ -64,4 +64,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, {logout})(Navbar)
+export default connect(mapStateToProps, { logout })(Navbar)

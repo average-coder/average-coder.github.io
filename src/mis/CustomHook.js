@@ -7,8 +7,8 @@ export default function usePersistedState(key, defaultValue) {
   });
   React.useEffect(() => {
     window.localStorage.setItem(key, JSON.stringify(state));
-    return ()=>{
-        window.localStorage.removeItem(key);
+    return () => {
+      window.localStorage.removeItem(key);
     }
   }, [state, key]);
   return [state, setState];

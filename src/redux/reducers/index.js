@@ -9,12 +9,12 @@ import editor from './editor';
 import suggestions from './suggestions';
 
 export default combineReducers({
-auth,
-errors,
-messages,
-posts,
-search,
-images,
-editor,
-suggestions
+    auth,
+    errors,
+    messages,
+    posts,
+    search,
+    images,
+    editor,
+    suggestions
 })

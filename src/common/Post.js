@@ -7,35 +7,35 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import CommentSection from './CommentSection';
-import {convert} from './Time';
+import { convert } from './Time';
 import Box from '@material-ui/core/Box';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 var Markdown = require('react-markdown-it')
 
 const Post = props => {
 
     const slug = props.match.params.slug
-    useEffect(()=>{
+    useEffect(() => {
         props.getPost(slug)
-    },[slug])
+    }, [slug])
 
 
     return (
         <Container>
             <Box>
-            <Helmet>
-                <title>{props.posts.title}</title>
-                <meta name="description" content={props.posts.title} />
-                <meta name="author" content={props.posts.username} />
-                <meta name="keywords" content={props.posts.slug} /> 
-            </Helmet>
+                <Helmet>
+                    <title>{props.posts.title}</title>
+                    <meta name="description" content={props.posts.title} />
+                    <meta name="author" content={props.posts.username} />
+                    <meta name="keywords" content={props.posts.slug} />
+                </Helmet>
             </Box>
             <Grid
-            container
-            direction="column"
-            spacing={3}
-            style={{ minHeight: "90vh" }}
+                container
+                direction="column"
+                spacing={3}
+                style={{ minHeight: "90vh" }}
             >
                 <Grid item>
                     <Typography variant="h2" component="h2">
@@ -49,17 +49,17 @@ const Post = props => {
                 </Grid>
                 <Divider light />
                 <Grid item>
-                <div className="markdown-body">
-                    <Markdown source={props.posts.data} />
-                </div>
+                    <div className="markdown-body">
+                        <Markdown source={props.posts.data} />
+                    </div>
                 </Grid>
                 <Divider light />
                 <Grid item>
-                    <CommentSection/>
+                    <CommentSection />
                 </Grid>
             </Grid>
         </Container>
-        
+
     )
 }
 
@@ -70,8 +70,8 @@ Post.propTypes = {
 
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     posts: state.posts
 })
 
-export default connect(mapStateToProps, {getPost})(Post)
+export default connect(mapStateToProps, { getPost })(Post)

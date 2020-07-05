@@ -11,11 +11,11 @@ const initialState = {
     username: '',
 }
 
-export default function (state = initialState, action){
-    switch(action.type){
+export default function (state = initialState, action) {
+    switch (action.type) {
 
         case GET_POST:
-            return{
+            return {
                 id: action.payload.id,
                 comments: action.payload.comments,
                 title: action.payload.title,
@@ -28,19 +28,19 @@ export default function (state = initialState, action){
 
         case CLEAR_POST:
             return initialState
-        
+
         case ADD_COMMENT:
-            return{ 
+            return {
                 ...state,
                 comments: [...state.comments, action.payload]
             }
-        
+
         case ADD_SUBCOMMENT:
-            return{
+            return {
                 ...state,
-                comments: (state.comments).map((item)=>{if(item.id === action.payload.id){if(item.sub_comments){return({...item, sub_comments: [...item.sub_comments, action.payload.data]})}else{return({...item, sub_comments: [action.payload.data]})}}else{return(item)}})
+                comments: (state.comments).map((item) => { if (item.id === action.payload.id) { if (item.sub_comments) { return ({ ...item, sub_comments: [...item.sub_comments, action.payload.data] }) } else { return ({ ...item, sub_comments: [action.payload.data] }) } } else { return (item) } })
             }
-            
+
         default:
             return state;
     }

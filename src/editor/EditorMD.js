@@ -18,56 +18,56 @@ const mdParser = new MarkdownIt();
 
 const EditorMD = props => {
 
-    const [title, setTitle] = usePersistedState('title', '');
-    const [post, setPost] = usePersistedState('post', null);
-    return (
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          spacing={2}
-          style={{ minHeight: "90vh" , padding: 10, maxWidth: "99vw"}}
-        >
-          <Grid item>
-      <TextField 
-      id="title" 
-      label="Title" 
-      variant="outlined" 
-      fullWidth
-      value={title}
-      onChange={(text)=>{setTitle(text.target.value)}}/>
+  const [title, setTitle] = usePersistedState('title', '');
+  const [post, setPost] = usePersistedState('post', null);
+  return (
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      spacing={2}
+      style={{ minHeight: "90vh", padding: 10, maxWidth: "99vw" }}
+    >
+      <Grid item>
+        <TextField
+          id="title"
+          label="Title"
+          variant="outlined"
+          fullWidth
+          value={title}
+          onChange={(text) => { setTitle(text.target.value) }} />
       </Grid>
       <Grid item>
-    <MdEditor
-      value={post}
-      style={{ height: "500px" }}
-      renderHTML={(text) => mdParser.render(text)}
-      onChange={({html, text})=>{setPost(text)}}
-      />
-     </Grid>
-      
-<Grid item>
-  <Paper variant="outlined">
-     <PhotoUploader />
-  </Paper>
-</Grid>
+        <MdEditor
+          value={post}
+          style={{ height: "500px" }}
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={({ html, text }) => { setPost(text) }}
+        />
+      </Grid>
 
-<Grid item>
-      <Button variant="outlined" color="primary" onClick={()=>{props.addPost(title, post)}}>
-  POST
+      <Grid item>
+        <Paper variant="outlined">
+          <PhotoUploader />
+        </Paper>
+      </Grid>
+
+      <Grid item>
+        <Button variant="outlined" color="primary" onClick={() => { props.addPost(title, post) }}>
+          POST
 </Button>
-</Grid>
+      </Grid>
 
-</Grid>
+    </Grid>
   )
 }
 
 EditorMD.propTypes = {
-addPost: PropTypes.func.isRequired,
+  addPost: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state) => ({
   post: state.posts
 })
 
-export default connect(mapStateToProps, {addPost, getPost})(EditorMD)
+export default connect(mapStateToProps, { addPost, getPost })(EditorMD)

@@ -16,80 +16,80 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { pushMessage } from '../redux/actions/alerts';
 
 
-const useStyles = makeStyles((theme)=>({
-    root: {
-        maxWidth: 345,
-        backgroundColor: 'rgba(0, 0, 0, 0.05)',
-      },
-  }));
-  
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+  },
+}));
+
 
 const PhotoUploader = props => {
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const res_arr = (props.images).map((item)=>{
-      return(
-        <Grid item key={item.id}>
-          <Card className={classes.root} variant="outlined">
-      <CardActionArea  onClick={() =>  {navigator.clipboard.writeText(item.image); props.pushMessage("LINK COPIED");}}>
-        <CardMedia
-          component="img"
-          alt="uploaded"
-          height="140"
-          src= {item.image}
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p" noWrap>
-          {item.image}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" startIcon={<DeleteIcon />} onClick={()=>{props.removeImage(item.id)}}>
-          DELETE
-        </Button>
-      </CardActions>
-    </Card>
-        </Grid>
-      )
-    })
-
+  const res_arr = (props.images).map((item) => {
     return (
+      <Grid item key={item.id}>
+        <Card className={classes.root} variant="outlined">
+          <CardActionArea onClick={() => { navigator.clipboard.writeText(item.image); props.pushMessage("LINK COPIED"); }}>
+            <CardMedia
+              component="img"
+              alt="uploaded"
+              height="140"
+              src={item.image}
+            />
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p" noWrap>
+                {item.image}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size="small" color="primary" startIcon={<DeleteIcon />} onClick={() => { props.removeImage(item.id) }}>
+              DELETE
+        </Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    )
+  })
+
+  return (
     <Fragment>
       <Grid container
-      direction="column"
-      justify="center"
-      alignItems="center"
-      spacing={1}
-      style={{ padding: 10 }}
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={1}
+        style={{ padding: 10 }}
       >
         <Grid item>
-        <input
-        accept="image/*"
-        style={{ display: 'none' }}
-        id="raised-button-file"
-        type="file"
-        onChange={(e)=>{props.addImage(e.target.files[0])}}
-      />
-      <label htmlFor="raised-button-file">
-        <Button variant="outlined" component="span" color="primary" startIcon={<CloudUploadIcon/>}>
-          UPLOAD IMAGE
+          <input
+            accept="image/*"
+            style={{ display: 'none' }}
+            id="raised-button-file"
+            type="file"
+            onChange={(e) => { props.addImage(e.target.files[0]) }}
+          />
+          <label htmlFor="raised-button-file">
+            <Button variant="outlined" component="span" color="primary" startIcon={<CloudUploadIcon />}>
+              UPLOAD IMAGE
         </Button>
-      </label> 
+          </label>
         </Grid>
       </Grid>
-    <Grid container
-    direction="row"
-    justify="flex-start"
-    alignItems="center"
-    spacing={1}
-    style={{ padding: 10 }}
-    >
-        {res_arr}      
+      <Grid container
+        direction="row"
+        justify="flex-start"
+        alignItems="center"
+        spacing={1}
+        style={{ padding: 10 }}
+      >
+        {res_arr}
       </Grid>
-      </Fragment>
-    )
+    </Fragment>
+  )
 }
 
 PhotoUploader.propTypes = {
@@ -99,7 +99,7 @@ PhotoUploader.propTypes = {
   pushMessage: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state) => ({
   images: state.images.images
 })
 
