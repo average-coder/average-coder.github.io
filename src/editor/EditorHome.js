@@ -69,7 +69,7 @@ const EditorHome = (props) => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small">EDIT</Button>
+            <Button size="small" component={Link} to={"/editor/" + item.slug}>EDIT</Button>
             <Button size="small" onClick={() => { setVisible(item.id) }}>DELETE</Button>
           </CardActions>
         </Card>

@@ -30,6 +30,17 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
     }
   },
+  root1: {
+    minWidth: 275,
+    maxWidth: 275,
+    margin: "auto",
+    transition: "0.3s",
+    backgroundColor: "#000000",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(1,1,1,0.3)",
+    }
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -110,9 +121,9 @@ const Home = (props) => {
         <Grid
           item
         >
-          <Card className={classes.root} >
+          <Card className={classes.root1} >
             <CardContent>
-              <Typography variant="h5" component="h2">
+              <Typography variant="h5" component="h2" style={{color: "#ffffff"}}>
                 Here are some posts you may be interested in
         </Typography>
             </CardContent>
