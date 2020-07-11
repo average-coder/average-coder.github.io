@@ -2,6 +2,7 @@
   "name": "avgf",
   "version": "0.1.0",
   "private": true,
+  "homepage": "average-coder.github.io",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -36,7 +37,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sitemap": "babel-node src/sitemap/sitemap-generator.js",
-    "prebuild": "npm run sitemap"
+    "prebuild": "npm run sitemap",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
   },
   "eslintConfig": {
     "extends": "react-app"
