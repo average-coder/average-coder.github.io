@@ -3,6 +3,7 @@
 <url> <loc>https://avgcdr.com/</loc> </url>
 <url> <loc>https://avgcdr.com/</loc> </url>
 <url> <loc>https://avgcdr.com/login</loc> </url>
+<url> <loc>https://avgcdr.com/post/test</loc> </url>
 <url> <loc>https://avgcdr.com/search/:title</loc> </url>
 <url> <loc>https://avgcdr.com/request-post</loc> </url>
 </urlset>
