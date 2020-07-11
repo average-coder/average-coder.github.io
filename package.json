@@ -39,7 +39,7 @@
     "sitemap": "babel-node src/sitemap/sitemap-generator.js",
     "prebuild": "npm run sitemap",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
