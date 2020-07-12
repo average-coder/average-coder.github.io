@@ -23,9 +23,8 @@ const EditorMD = props => {
     slug && props.getPost(slug)
   }, [slug])
 
-
-  const [title, setTitle] = usePersistedState('title', props.posts.title);
-  const [post, setPost] = usePersistedState('post', props.posts.data);
+  const [title, setTitle] = usePersistedState('title', slug ? props.posts.title : '');
+  const [post, setPost] = usePersistedState('post', slug ? props.posts.data : null);
   return (
     <Grid
       container

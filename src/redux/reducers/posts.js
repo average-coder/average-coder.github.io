@@ -27,7 +27,15 @@ export default function (state = initialState, action) {
             }
 
         case CLEAR_POST:
-            return initialState
+            return {
+                id: 0,
+                comments: [],
+                title: '',
+                date_posted: '',
+                slug: '',
+                author: '',
+                username: ''
+            }
 
         case ADD_COMMENT:
             return {

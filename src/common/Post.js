@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPost } from '../redux/actions/posts';
+import { getPost, clearPost } from '../redux/actions/posts';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +18,9 @@ const Post = props => {
     const slug = props.match.params.slug
     useEffect(() => {
         props.getPost(slug)
+        return() =>{
+            props.clearPost()
+        }
     }, [slug])
 
 
@@ -66,7 +69,8 @@ const Post = props => {
 Post.propTypes = {
 
     posts: PropTypes.object.isRequired,
-    getPost: PropTypes.func.isRequired
+    getPost: PropTypes.func.isRequired,
+    clearPost: PropTypes.func.isRequired
 
 }
 
@@ -74,4 +78,4 @@ const mapStateToProps = state => ({
     posts: state.posts
 })
 
-export default connect(mapStateToProps, { getPost })(Post)
+export default connect(mapStateToProps, { getPost, clearPost })(Post)

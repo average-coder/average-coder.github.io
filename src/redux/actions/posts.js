@@ -1,4 +1,4 @@
-import { GET_MESSAGES, GET_ERRORS, GET_POST } from './types';
+import { GET_MESSAGES, GET_ERRORS, GET_POST, CLEAR_POST } from './types';
 import { tokenConfig } from './auth';
 import axios from 'axios';
 
@@ -61,4 +61,11 @@ export const getPost = (slug) => (dispatch, getState) => {
         .catch(err => {
             console.log(err)
         })
+}
+
+export const clearPost = () => (dispatch, getState) => {
+    dispatch({
+        type: CLEAR_POST,
+        payload: null
+    })
 }
