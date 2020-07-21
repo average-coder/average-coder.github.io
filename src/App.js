@@ -29,7 +29,7 @@ function App() {
     position: 'bottom center'
   }
 
-  axios.defaults.baseURL = '';
+  axios.defaults.baseURL = 'https://avgcdr.tk/api/';
 
   useEffect(() => { store.dispatch(loadUser()) }, []);
 
