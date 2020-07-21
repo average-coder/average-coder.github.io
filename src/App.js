@@ -29,7 +29,7 @@ function App() {
     position: 'bottom center'
   }
 
-  axios.defaults.baseURL = 'https://average-coder-backend.herokuapp.com/';
+  axios.defaults.baseURL = 'https://avgcdr.tk/api/';
 
   useEffect(() => { store.dispatch(loadUser()) }, []);
 
