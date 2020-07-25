@@ -1,4 +1,4 @@
-import { ADD_IMAGE, REMOVE_IMAGE, GET_MESSAGES, GET_ERRORS } from './types';
+import { ADD_IMAGE, REMOVE_IMAGE, GET_MESSAGES, GET_ERRORS, SET_LOADING } from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
@@ -6,7 +6,7 @@ import { tokenConfig } from './auth';
 export const addImage = (image) => (dispatch, getState) => {
 
   const token = getState().auth.token;
-
+ 
 
   const config = {
     headers: {
@@ -25,7 +25,7 @@ export const addImage = (image) => (dispatch, getState) => {
         dispatch({
           type: ADD_IMAGE,
           payload: res.data
-        })
+        });
         dispatch({
           type: GET_MESSAGES,
           payload: "IMAGE ADDED"
@@ -51,6 +51,7 @@ export const addImage = (image) => (dispatch, getState) => {
 
 
 export const removeImage = (id) => (dispatch, getState) => {
+  
 
   axios.delete(`/image/${id}/`, tokenConfig(getState))
     .then((res) => {

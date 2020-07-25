@@ -17,3 +17,4 @@ export const DELETE_POST = "DELETE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const ADD_SUBCOMMENT = "ADD_SUBCOMMENT";
 export const GET_SUGGESTIONS = "GET_SUGGETIONS";
+export const SET_LOADING = "SET_LOADING";

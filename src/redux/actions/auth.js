@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_USER, GET_ERRORS } from './types';
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_USER, GET_ERRORS, SET_LOADING } from './types';
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -41,7 +41,9 @@ export const login = (username, password) => (dispatch) => {
   // Request Body
   const body = JSON.stringify({ username, password });
 
-
+  dispatch({
+    type: SET_LOADING
+  });
 
   axios
     .post('/auth/login/', body, config)
@@ -50,10 +52,16 @@ export const login = (username, password) => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      dispatch({
+        type: SET_LOADING
+      });
     })
     .catch((err) => {
       dispatch({
         type: LOGIN_FAIL,
+      });
+      dispatch({
+        type: SET_LOADING
       });
       const error = {
         msg: err.response.data,
@@ -63,6 +71,7 @@ export const login = (username, password) => (dispatch) => {
         type: GET_ERRORS,
         payload: error
       });
+
     })
 
 }

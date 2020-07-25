@@ -1,8 +1,11 @@
 import axios from 'axios';
-import { GET_MESSAGES, GET_ERRORS } from '../actions/types';
+import { GET_MESSAGES, GET_ERRORS, SET_LOADING } from '../actions/types';
 
 
 export const requestPost = (req, captcha, responseG) => (dispatch, getState) => {
+  dispatch({
+    type: SET_LOADING
+  });
 
   const config = {
     headers: {
@@ -16,7 +19,9 @@ export const requestPost = (req, captcha, responseG) => (dispatch, getState) => 
       msg: "PLEASE ENTER A VALID REQUEST",
       status: 10401
     };
-
+    dispatch({
+      type: SET_LOADING
+    });
     dispatch({
       type: GET_ERRORS,
       payload: error
@@ -29,6 +34,9 @@ export const requestPost = (req, captcha, responseG) => (dispatch, getState) => 
 
   axios.post('/post-request/', body, config)
     .then((res) => {
+      dispatch({
+        type: SET_LOADING
+      });
 
       dispatch({
         type: GET_MESSAGES,
@@ -42,6 +50,9 @@ export const requestPost = (req, captcha, responseG) => (dispatch, getState) => 
         msg: err.response.data,
         status: err.response.status
       };
+      dispatch({
+        type: SET_LOADING
+      });
 
       dispatch({
         type: GET_ERRORS,

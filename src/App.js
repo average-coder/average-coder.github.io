@@ -20,6 +20,7 @@ import AlertTemplate from './common/AlertTemplate';
 import Post from './common/Post';
 import Search from './common/Search';
 import RequestPost from './common/RequestPost';
+import Loader from './common/Loader';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <CssBaseline />
           <Fragment>
             <Router>
+              <Loader />
               <Navbar />
               <Alerts />
               <Switch>

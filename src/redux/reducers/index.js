@@ -7,6 +7,7 @@ import search from './search';
 import images from './images';
 import editor from './editor';
 import suggestions from './suggestions';
+import loader from './loader';
 
 export default combineReducers({
     auth,
@@ -16,5 +17,6 @@ export default combineReducers({
     search,
     images,
     editor,
-    suggestions
+    suggestions,
+    loader
 })

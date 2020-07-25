@@ -1,4 +1,4 @@
-import { GET_SUGGESTIONS, GET_ERRORS } from './types';
+import { GET_SUGGESTIONS, GET_ERRORS, SET_LOADING } from './types';
 import axios from 'axios';
 
 export const getSuggestions = () => (dispatch, getState) => {
@@ -7,12 +7,18 @@ export const getSuggestions = () => (dispatch, getState) => {
             'Content-Type': 'application/json'
         }
     }
+    dispatch({
+        type: SET_LOADING
+    })
 
     axios.get('/suggestions/', config)
         .then((res) => {
             dispatch({
                 type: GET_SUGGESTIONS,
                 payload: res.data
+            })
+            dispatch({
+                type: SET_LOADING
             })
         })
         .catch((err) => {
@@ -24,5 +30,8 @@ export const getSuggestions = () => (dispatch, getState) => {
                 type: GET_ERRORS,
                 payload: error
             });
+            dispatch({
+                type: SET_LOADING
+            })
         })
 }

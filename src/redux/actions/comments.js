@@ -1,4 +1,4 @@
-import { ADD_COMMENT, ADD_SUBCOMMENT, GET_ERRORS, GET_MESSAGES } from './types';
+import { ADD_COMMENT, ADD_SUBCOMMENT, GET_ERRORS, GET_MESSAGES, SET_LOADING } from './types';
 import axios from 'axios';
 
 export const addComment = (name, comment, post) => (dispatch, getState) => {
@@ -10,13 +10,18 @@ export const addComment = (name, comment, post) => (dispatch, getState) => {
             'Content-Type': 'application/json'
         }
     }
-
+    dispatch({
+        type: SET_LOADING
+    })
     axios.post('/comment/', body, config)
         .then((res) => {
             dispatch({
                 type: ADD_COMMENT,
                 payload: res.data
             });
+            dispatch({
+                type: SET_LOADING
+            })
 
             dispatch({
                 type: GET_MESSAGES,
@@ -28,6 +33,9 @@ export const addComment = (name, comment, post) => (dispatch, getState) => {
                 msg: err.response.data,
                 status: err.response.status
             };
+            dispatch({
+                type: SET_LOADING
+            })
             dispatch({
                 type: GET_ERRORS,
                 payload: error
@@ -45,6 +53,9 @@ export const addSubComment = (name, comment, parent_comment) => (dispatch, getSt
             'Content-Type': 'application/json'
         }
     }
+    dispatch({
+        type: SET_LOADING
+    })
 
     axios.post('/sub-comment/', body, config)
         .then((res) => {
@@ -57,6 +68,9 @@ export const addSubComment = (name, comment, parent_comment) => (dispatch, getSt
                 payload: ans
             });
             dispatch({
+                type: SET_LOADING
+            })
+            dispatch({
                 type: GET_MESSAGES,
                 payload: "COMMENT ADDED"
             });
@@ -66,6 +80,9 @@ export const addSubComment = (name, comment, parent_comment) => (dispatch, getSt
                 msg: err.response.data,
                 status: err.response.status
             };
+            dispatch({
+                type: SET_LOADING
+            })
             dispatch({
                 type: GET_ERRORS,
                 payload: error
