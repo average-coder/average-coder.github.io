@@ -15,7 +15,7 @@ export const getSuggestions = () => (dispatch, getState) => {
         .then((res) => {
             dispatch({
                 type: GET_SUGGESTIONS,
-                payload: res.data.results
+                payload: res.data
             })
             dispatch({
                 type: SET_LOADING
