@@ -129,7 +129,7 @@ const Home = (props) => {
             </CardContent>
           </Card>
         </Grid>
-        {
+        {props.suggestions?
           (props.suggestions).map((item) => (
             <Grid item key={item.id}>
               <Card className={classes.root}>
@@ -145,7 +145,7 @@ const Home = (props) => {
                 </CardActionArea>
               </Card>
             </Grid>
-          ))
+          )): null
         }
       </Grid>
     </Container>
