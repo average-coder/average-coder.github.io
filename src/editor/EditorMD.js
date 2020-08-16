@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addPost, getPost, updatePost } from '../redux/actions/posts';
+import { addPost } from '../redux/actions/posts';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PhotoUploader from './PhotoUploader';
@@ -18,13 +18,8 @@ const mdParser = new MarkdownIt();
 
 const EditorMD = props => {
 
-  const slug = props.match.params.slug
-  useEffect(() => {
-    slug && props.getPost(slug)
-  }, [slug])
-
-  const [title, setTitle] = usePersistedState('title', slug ? props.posts.title : '');
-  const [post, setPost] = usePersistedState('post', slug ? props.posts.data : null);
+  const [title, setTitle] = usePersistedState('title', '');
+  const [post, setPost] = usePersistedState('post', '');
   return (
     <Grid
       container
@@ -58,7 +53,7 @@ const EditorMD = props => {
       </Grid>
 
       <Grid item>
-        <Button variant="outlined" color="primary" onClick={() => { slug? props.updatePost(title, post, props.posts.id):props.addPost(title, post) }}>
+        <Button variant="outlined" color="primary" onClick={() => {props.addPost(title, post)}}>
           POST
 </Button>
       </Grid>
@@ -69,14 +64,10 @@ const EditorMD = props => {
 
 EditorMD.propTypes = {
   addPost: PropTypes.func.isRequired,
-  posts: PropTypes.object.isRequired,
-  getPost: PropTypes.func.isRequired,
-  updatePost: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  posts: state.posts
 })
 
 
-export default connect(mapStateToProps, { addPost, getPost, updatePost })(EditorMD)
+export default connect(mapStateToProps, { addPost })(EditorMD)

@@ -21,7 +21,7 @@ import Post from './common/Post';
 import Search from './common/Search';
 import RequestPost from './common/RequestPost';
 import Loader from './common/Loader';
-
+import Update from './editor/Update';
 
 function App() {
 
@@ -52,7 +52,7 @@ function App() {
                 <Route exact path="/request-post" component={RequestPost} />
                 <PrivateRoute exact path="/ehome" component={EditorHome} />
                 <PrivateRoute exact path="/editor" component={EditorMD} />
-                <PrivateRoute exact path="/editor/:slug" component={EditorMD} />
+                <PrivateRoute exact path="/editor/:slug" component={Update} />
               </Switch>
             </Router>
           </Fragment>
